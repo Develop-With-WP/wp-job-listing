@@ -69,12 +69,11 @@ function dwwp_meta_callback( $post ) {
 	          <label for="minimum-requirements" class="dwwp-row-title"><?php _e( 'Minimum Requirements', 'wp-job-listing' ) ?></label>
 	        </div>
 	        <div class="meta-td">
-	          <textarea name="minimum_requirements" class ="dwwp-textarea" id="minimum-requirements">
-		          <?php
-		          if ( ! empty ( $dwwp_stored_meta['minimum_requirements'] ) ) {
-			          echo esc_attr( $dwwp_stored_meta['minimum_requirements'][0] );
-		          }
-		          ?>
+	          <textarea name="minimum_requirements" class="dwwp-textarea" id="minimum-requirements"><?php
+	          if ( ! empty ( $dwwp_stored_meta['minimum_requirements'] ) ) {
+		          echo esc_attr( $dwwp_stored_meta['minimum_requirements'][0] );
+	          }
+	          ?>
 	          </textarea>
 	        </div>
 	    </div>
@@ -83,8 +82,7 @@ function dwwp_meta_callback( $post ) {
 	          <label for="preferred-requirements" class="dwwp-row-title"><?php _e( 'Preferred Requirements', 'wp-job-listing' ) ?></label>
 	        </div>
 	        <div class="meta-td">
-	          <textarea name="preferred_requirements" class ="dwwp-textarea" id="preferred-requirements">
-		          <?php
+	          <textarea name="preferred_requirements" class="dwwp-textarea" id="preferred-requirements"><?php
 			          if ( ! empty ( $dwwp_stored_meta['preferred_requirements'] ) ) {
 			            echo esc_attr( $dwwp_stored_meta['preferred_requirements'][0] );
 			          }
@@ -130,10 +128,10 @@ function dwwp_meta_save( $post_id ) {
     	update_post_meta( $post_id, 'principle_duties', sanitize_text_field( $_POST[ 'principle_duties' ] ) );
     }
 	if ( isset( $_POST[ 'preferred_requirements' ] ) ) {
-		update_post_meta( $post_id, 'preferred_requirements', sanitize_text_field( $_POST[ 'preferred_requirements' ] ) );
+		update_post_meta( $post_id, 'preferred_requirements', wp_kses_post( $_POST[ 'preferred_requirements' ] ) );
 	}
 	if ( isset( $_POST[ 'minimum_requirements' ] ) ) {
-		update_post_meta( $post_id, 'minimum_requirements', sanitize_text_field( $_POST[ 'minimum_requirements' ] ) );
+		update_post_meta( $post_id, 'minimum_requirements', wp_kses_post( $_POST[ 'minimum_requirements' ] ) );
 	}
 	if ( isset( $_POST[ 'relocation_assistance' ] ) ) {
 		update_post_meta( $post_id, 'relocation_assistance', sanitize_text_field( $_POST[ 'relocation_assistance' ] ) );

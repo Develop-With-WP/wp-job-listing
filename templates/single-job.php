@@ -7,30 +7,18 @@
  * @since Twenty Fifteen 1.0
  */
 
-get_header(); ?>
+//This is simple fetching post meta
+$job_fetch_meta = get_post_meta( get_the_ID() );
+var_dump( $job_fetch_meta );
+echo '<br />';
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+$job1 = get_post_meta( get_the_ID(), 'date_listed', true );
+var_dump($job1);
+echo '<br />';
 
-			<?php
-			// Start the loop.
-			while ( have_posts() ) : the_post();
-				$job_fetch_meta = get_post_meta( get_the_ID() );
-				$job_meta = array_map( function( $a ){ return $a[0]; }, $job_fetch_meta );
-				var_dump( $job_meta );
-				?>
+$job2 = get_post_meta( get_the_ID(), 'application_deadline', true );
+var_dump($job2);
+echo '<br />';
 
-				<div>
-
-				</div>
-
-				<?php
-
-				// End the loop.
-			endwhile;
-			?>
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
-<?php get_footer(); ?>
+$job3 = get_post_meta( get_the_ID(), 'minimum_requirements', true );
+var_dump($job3);
