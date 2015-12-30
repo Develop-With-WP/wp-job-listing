@@ -123,7 +123,7 @@ function dwwp_load_templates( $original_template ) {
 
                }
 
-       } else {
+       } elseif(is_singular('job')) {
 
                if (  file_exists( get_stylesheet_directory(). '/single-job.php' ) ) {
 
@@ -135,6 +135,8 @@ function dwwp_load_templates( $original_template ) {
 
                }
 
+       }else{
+       	return get_page_template();
        }
 
         return $original_template;
